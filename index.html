@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="recipe.png">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Recipes</h1>
+        </div>
+        <div class="content">
+            <div class="recipe-grid" id="recipeGrid">
+                <div class="recipe-card" onclick="openRecipe('Lentil Soup')">Lentil Soup</div>
+                <div class="recipe-card" onclick="openRecipe('Chicken Curry')">Chicken Curry</div>
+                <div class="recipe-card" onclick="openRecipe('Caesar Salad')">Caesar Salad</div>
+                <div class="recipe-card" onclick="openRecipe('Spaghetti Carbonara')">Spaghetti Carbonara</div>
+                <div class="recipe-card" onclick="openRecipe('Beef Tacos')">Beef Tacos</div>
+                <div class="recipe-card" onclick="openRecipe('Vegetable Stir Fry')">Vegetable Stir Fry</div>
+                <div class="recipe-card" onclick="openRecipe('Chocolate Cake')">Chocolate Cake</div>
+                <div class="recipe-card" onclick="openRecipe('Greek Salad')">Greek Salad</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="recipeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Recipe</h2>
+                <button class="close-btn" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <div class="loading">Loading recipe...</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
