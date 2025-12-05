@@ -1,31 +1,48 @@
 const API_KEY = 'yMp+yeIeXs32fNeHR5MO2w==5wZ2SMuwFzNMnFqO';
 const API_URL = 'https://api.api-ninjas.com/v2/recipe';
-const recipeNames = [
-    'Lentil Soup',
-    'Chicken Curry',
-    'Caesar Salad',
-    'Spaghetti Carbonara',
-    'Beef Tacos',
-    'Vegetable Stir Fry',
-    'Chocolate Cake',
-    'Greek Salad'
+
+const recipes = [
+    { title: 'Lentil Soup',            image: 'img/lentil-soup.jpg' },
+    { title: 'Chicken Curry',          image: 'img/chicken-curry.jpg' },
+    { title: 'Caesar Salad',           image: 'img/caesar-salad.jpg' },
+    { title: 'Spaghetti Carbonara',    image: 'img/spaghetti-carbonara.jpg' },
+    { title: 'Beef Tacos',             image: 'img/beef-tacos.jpg' },
+    { title: 'Vegetable Stir Fry',     image: 'img/vegetable-stir-fry.jpg' },
+    { title: 'Chocolate Cake',         image: 'img/chocolate-cake.jpg' },
+    { title: 'Greek Salad',            image: 'img/greek-salad.jpg' },
+    { title: 'Pancakes',               image: 'img/pancakes.jpg' },
+    { title: 'Tomato Soup',            image: 'img/tomato-soup.jpg' },
+    { title: 'Grilled Salmon',         image: 'img/grilled-salmon.jpg' },
+    { title: 'Mashed Potatoes',        image: 'img/mashed-potatoes.jpg' },
+    { title: 'Omelette',               image: 'img/omelette.jpg' },
+    { title: 'Banana Bread',           image: 'img/banana-bread.jpg' },
+    { title: 'Fried Rice',             image: 'img/fried-rice.jpg' },
+    { title: 'Chicken Noodle Soup',    image: 'img/chicken-noodle-soup.jpg' }
 ];
+
 async function loadRecipeCards() {
     const grid = document.getElementById('recipeGrid');
     grid.innerHTML = '<p class="loading">Loading recipes...</p>';
 
     let html = '';
 
-    for (const name of recipeNames) {
+    for (const r of recipes) {
         html += `
-            <div class="recipe-card" onclick="openRecipe('${name}')">
-                ${name}
+            <div class="recipe-card" onclick="openRecipe('${r.title.replace(/'/g, "\\'")}')">
+                <img 
+                    src="${r.image}" 
+                    alt="${r.title}" 
+                    class="recipe-image"
+                    onerror="this.src='img/placeholder.jpg'"
+                >
+                <div class="recipe-name">${r.title}</div>
             </div>
         `;
     }
 
     grid.innerHTML = html;
 }
+
 async function openRecipe(recipeName) {
     const modal = document.getElementById('recipeModal');
     const modalBody = document.getElementById('modalBody');
@@ -60,6 +77,7 @@ async function openRecipe(recipeName) {
         `;
     }
 }
+
 function displayRecipe(recipe) {
     const modalBody = document.getElementById('modalBody');
 
@@ -84,6 +102,7 @@ function displayRecipe(recipe) {
         </div>
     `;
 }
+
 function closeModal() {
     const modal = document.getElementById('recipeModal');
     modal.classList.remove('active');
@@ -96,4 +115,5 @@ document.getElementById('recipeModal').addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
 });
+
 loadRecipeCards();
